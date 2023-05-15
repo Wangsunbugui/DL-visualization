@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index(张娜)</title>
+    <link rel="stylesheet" href="../static\index.css" type="text/css">
+
+</head>
+
+<body>
+    <!-- 页面的title -->
+    <div class="title">
+        <p style="height: 1px;" id="title">
+        <p>这是一个深度学习的可视化平台</p>
+        <p> 它将为您提供一些基本的深度学习模型的可视化演示，希望您能从中有所收获</p><br>
+
+    </div>
+
+    <!--页面选择栏-->
+    <div class="navbar">
+        <ul>
+            <li><a href="#">超参数</a>
+                <ul>
+                    <li><a href="#">lenet-5</a>
+                    <li><a href="#">VGG</a>
+                    <li><a href="#">Alexnet</a>
+                    <li><a href="#">Audi</a>
+                </ul>
+            </li>
+            <li><a href="#">数据集</a>
+                <ul>
+                    <li><a href="#">lenet-5</a>
+                    <li><a href="#">VGG</a>
+                    <li><a href="#">Alexnet</a>
+                    <li><a href="#">Audi</a>
+                </ul>
+            </li>
+            <li><a href="#">modle</a>
+                <ul>
+                    <li><a href="#">lenet-5</a>
+                    <li><a href="#">VGG</a>
+                    <li><a href="#">Alexnet</a>
+                    <li><a href="#">Audi</a>
+                </ul>
+            </li>
+    </div>
+
+
+    <div id="image-wrapper">
+        <!-- 可视化过程 -->
+        <div class="container">
+
+            <!-- 原始图片 -->
+            <div class="column0">
+                <br><br>
+                <canvas class="signature_pad" id="canvas" width="200px" height="200px"></canvas>
+                <div class="btn">
+                    <button onclick="startTraining()">开始训练</button>
+                    <button onclick="endTraining()">停止训练</button>
+                    <button id="clear">重置</button>
+                </div>
+            </div>
+
+            <!-- 绘制连接曲线 -->
+            <svg height="1000px" width="120px">
+                <g fill="none" stroke="black" stroke-width="0.7 " opacity="0.8">
+
+                    <path d="M0 500 
+                        Q20 480,40 385
+                        T100 270" />
+
+                    <path d="M0 500 
+                        Q20 490,40 460
+                        T100 375" />
+
+                    <path d="M0 500 
+                        Q20 500,40 490
+                        T100 480" />
+
+                    <path d="M0 500 
+                        Q20 510,40 540
+                        T100 585" />
+
+                    <path d="M0 500 
+                        Q20 520,40 580
+                        T100 690" />
+
+                    <path d="M0 500 
+                        Q20 560 , 40 640
+                        T100 795" />
+                </g>
+
+            </svg>
+
+            <!-- 第一层卷积 -->
+            <div class="column1">
+                <!-- 创建6个正方形表格 -->
+                <br><br>
+                <p style="text-align: center; font-size: small;">cov_1</p>
+                <div class="square" id="conv1_0"></div>
+                <div class="square" id="conv1_1"></div>
+                <div class="square" id="conv1_2"></div>
+                <div class="square" id="conv1_3"></div>
+                <div class="square" id="conv1_4"></div>
+                <div class="square" id="conv1_5"></div>
+            </div>
+
+            <!-- 绘制曲线 -->
+            <svg height="1000px" width="120px">
+                <g fill="none" stroke="black" stroke-width="0.7 " opacity="0.8">
+
+                    <path d="M0 270 
+                        L100 270" />
+
+                    <path d="M0 270 
+                        Q20 490,40 460
+                        T100 375" />
+
+                    <path d="M0 270 
+                        Q20 500,40 490
+                        T100 480" />
+
+                    <path d="M0 270 
+                        Q20 510,40 540
+                        T100 585" />
+
+                    <path d="M0 270 
+                        Q20 520,40 580
+                        T100 690" />
+
+                    <path d="M0 270 
+                        Q20 560 , 40 640
+                        T100 795" />
+                </g>
+
+            </svg>
+
+            <!-- 第一层激活层 -->
+            <div class="column1">
+                <br><br>
+                <p style="text-align: center; font-size: small;">relu_1</p>
+                <div class="square" id="relu1_0"></div>
+                <div class="square" id="relu1_1"></div>
+                <div class="square" id="relu1_2"></div>
+                <div class="square" id="relu1_3"></div>
+                <div class="square" id="relu1_4"></div>
+                <div class="square" id="relu1_5"></div>
+            </div>
+
+            <!-- 绘制曲线 -->
+            <svg height="1000px" width="120px"></svg>
+
+            <!-- 第一层池化 -->
+            <div class="column1">
+                <br><br>
+                <p style="text-align: center; font-size: small;">polling_1</p>
+                <div class="square" id="pool1_0"></div>
+                <div class="square" id="pool1_1"></div>
+                <div class="square" id="pool1_2"></div>
+                <div class="square" id="pool1_3"></div>
+                <div class="square" id="pool1_4"></div>
+                <div class="square" id="pool1_5"></div>
+            </div>
+
+            <!-- 绘制曲线 -->
+            <svg height="1000px" width="120px"></svg>
+
+            <!-- 第二层卷积 -->
+            <div class="column2">
+                <br><br>
+                <p style="text-align: center; font-size: small;">cov_2</p>
+                <div class="square" id="conv2_0"></div>
+                <div class="square" id="conv2_1"></div>
+                <div class="square" id="conv2_2"></div>
+                <div class="square" id="conv2_3"></div>
+                <div class="square" id="conv2_4"></div>
+                <div class="square" id="conv2_5"></div>
+                <div class="square" id="conv2_6"></div>
+                <div class="square" id="conv2_7"></div>
+                <div class="square" id="conv2_8"></div>
+                <div class="square" id="conv2_9"></div>
+                <div class="square" id="conv2_10"></div>
+                <div class="square" id="conv2_11"></div>
+                <div class="square" id="conv2_12"></div>
+                <div class="square" id="conv2_13"></div>
+                <div class="square" id="conv2_14"></div>
+                <div class="square" id="conv2_15"></div>
+            </div>
+
+            <!-- 绘制曲线 -->
+            <svg height="1000px" width="120px"></svg>
+
+            <!-- 第二层激活层 -->
+            <div class="column2">
+                <br><br>
+                <p style="text-align: center; font-size: small;">relu_2</p>
+                <div class="square" id="relu2_0"></div>
+                <div class="square" id="relu2_1"></div>
+                <div class="square" id="relu2_2"></div>
+                <div class="square" id="relu2_3"></div>
+                <div class="square" id="relu2_4"></div>
+                <div class="square" id="relu2_5"></div>
+                <div class="square" id="relu2_6"></div>
+                <div class="square" id="relu2_7"></div>
+                <div class="square" id="relu2_8"></div>
+                <div class="square" id="relu2_9"></div>
+                <div class="square" id="relu2_10"></div>
+                <div class="square" id="relu2_11"></div>
+                <div class="square" id="relu2_12"></div>
+                <div class="square" id="relu2_13"></div>
+                <div class="square" id="relu2_14"></div>
+                <div class="square" id="relu2_15"></div>
+            </div>
+
+            <!-- 绘制曲线 -->
+            <svg height="1000px" width="120px"></svg>
+
+            <!-- 第二层池化 -->
+            <div class="column2">
+                <br><br>
+                <p style="text-align: center; font-size: small;">polling_2</p>
+                <div class="square" id="pool2_0"></div>
+                <div class="square" id="pool2_1"></div>
+                <div class="square" id="pool2_2"></div>
+                <div class="square" id="pool2_3"></div>
+                <div class="square" id="pool2_4"></div>
+                <div class="square" id="pool2_5"></div>
+                <div class="square" id="pool2_6"></div>
+                <div class="square" id="pool2_7"></div>
+                <div class="square" id="pool2_8"></div>
+                <div class="square" id="pool2_9"></div>
+                <div class="square" id="pool2_10"></div>
+                <div class="square" id="pool2_11"></div>
+                <div class="square" id="pool2_12"></div>
+                <div class="square" id="pool2_13"></div>
+                <div class="square" id="pool2_14"></div>
+                <div class="square" id="pool2_15"></div>
+            </div>
+
+            <!-- 绘制曲线 -->
+            <svg height="1000px" width="120px"></svg>
+
+            <!-- Lenet-5 结果 -->
+            <div class="column2">
+
+                <svg height="1000" width="50" class="ansrect">
+                    <text x="15" y="90" text-anchor="middle" style="text-align: center; font-size: small;">ans</text>
+                    <g width="50" height="50">
+                        <!-- 0 -->
+                        <rect x="0" y="140" width="30" height="20" />
+                        <text x="15" y="155" text-anchor="middle" stroke="black">0</text>
+                        <!-- 1 -->
+                        <rect x="0" y="220" width="30" height="20" />
+                        <text x="15" y="235" text-anchor="middle" stroke="black">1</text>
+                        <!-- 2 -->
+                        <rect x="0" y="300" width="30" height="20" />
+                        <text x="15" y="315" text-anchor="middle" stroke="black">2</text>
+                        <!-- 3 -->
+                        <rect x="0" y="380" width="30" height="20" />
+                        <text x="15" y="395" text-anchor="middle" stroke="black">3</text>
+                        <!-- 4 -->
+                        <rect x="0" y="460" width="30" height="20" />
+                        <text x="15" y="475" text-anchor="middle" stroke="black">4</text>
+                        <!-- 5 -->
+                        <rect x="0" y="540" width="30" height="20" />
+                        <text x="15" y="555" text-anchor="middle" stroke="black">5</text>
+                        <!-- 6 -->
+                        <rect x="0" y="620" width="30" height="20" />
+                        <text x="15" y="635" text-anchor="middle" stroke="black">6</text>
+                        <!-- 7 -->
+                        <rect x="0" y="700" width="30" height="20" />
+                        <text x="15" y="715" text-anchor="middle" stroke="black">7</text>
+                        <!-- 8 -->
+                        <rect x="0" y="780" width="30" height="20" />
+                        <text x="15" y="795" text-anchor="middle" stroke="black">8</text>
+                        <!-- 9 -->
+                        <rect x="0" y="860" width="30" height="20" />
+                        <text x="15" y="875" text-anchor="middle" stroke="black">9</text>
+
+                    </g>
+                </svg>
+            </div>
+
+            <!-- 展示每个数字对应的概率 -->
+            <div class="column2">
+
+                <svg height="1000" width="50" class="perrect">
+                    <text x="15" y="90" text-anchor="middle"
+                        style="text-align: center; font-size: small; stroke:blue">概率</text>
+                    <g width="50" height="50">
+                        <!-- 0 -->
+                        <rect x="0" y="140" width="30" height="20" />
+                        <text x="15" y="155" text-anchor="middle" stroke="black">
+                            <tspan>10%</tspan>
+                        </text>
+                        <!-- 1 -->
+                        <rect x="0" y="220" width="30" height="20" />
+                        <text x="15" y="235" text-anchor="middle" stroke="black">
+                            <tspan>10%</tspan>
+                        </text>
+                        <!-- 2 -->
+                        <rect x="0" y="300" width="30" height="20" />
+                        <text x="15" y="315" text-anchor="middle" stroke="black">
+                            <tspan>10%</tspan>
+                        </text>
+                        <!-- 3 -->
+                        <rect x="0" y="380" width="30" height="20" />
+                        <text x="15" y="395" text-anchor="middle" stroke="black">
+                            <tspan>10%</tspan>
+                        </text>
+                        <!-- 4 -->
+                        <rect x="0" y="460" width="30" height="20" />
+                        <text x="15" y="475" text-anchor="middle" stroke="black">
+                            <tspan>10%</tspan>
+                        </text>
+                        <!-- 5 -->
+                        <rect x="0" y="540" width="30" height="20" />
+                        <text x="15" y="555" text-anchor="middle" stroke="black">
+                            <tspan>10%</tspan>
+                        </text>
+                        <!-- 6 -->
+                        <rect x="0" y="620" width="30" height="20" />
+                        <text x="15" y="635" text-anchor="middle" stroke="black">
+                            <tspan>10%</tspan>
+                        </text>
+                        <!-- 7 -->
+                        <rect x="0" y="700" width="30" height="20" />
+                        <text x="15" y="715" text-anchor="middle" stroke="black">
+                            <tspan>10%</tspan>
+                        </text>
+                        <!-- 8 -->
+                        <rect x="0" y="780" width="30" height="20" />
+                        <text x="15" y="795" text-anchor="middle" stroke="black">
+                            <tspan>10%</tspan>
+                        </text>
+                        <!-- 9 -->
+                        <rect x="0" y="860" width="30" height="20" />
+                        <text x="15" y="875" text-anchor="middle" stroke="black">
+                            <tspan>10%</tspan>
+                        </text>
+
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 文本描述 -->
+    <div class="content">
+        <div class="centered-text">
+            <p>这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/index.js"></script>
+</body>
+
+</html>
